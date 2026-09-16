@@ -21,6 +21,7 @@ Click "Mulai Rekam" and the browser asks you to pick a screen, window, or tab to
 - **Auto-stop on share end** — if you stop sharing from the browser's own screen-share control instead of the app's Stop button, the recording stops automatically.
 - **Playback and download** — after stopping, the recording plays back in the page and shows its file size and duration. Download it as a `recording-<resolution>p-<timestamp>.webm` file.
 - **About page** — a second page (`about.html`) explains every setting, button, and on-screen indicator.
+- **Language toggle** — switch the whole UI between Indonesian and English; the choice is remembered across both pages.
 - **Accessibility touches** — status changes are announced via `aria-live`, focus outlines are visible, and the pulsing recording dot is disabled under `prefers-reduced-motion`.
 
 ## Running it
@@ -64,6 +65,7 @@ Klik "Mulai Rekam", lalu browser akan menampilkan dialog untuk memilih layar, wi
 - **Berhenti otomatis** — kalau Anda menghentikan share dari kontrol bawaan browser (bukan dari tombol Stop di aplikasi), rekaman ikut berhenti otomatis.
 - **Pemutaran dan download** — setelah berhenti, rekaman langsung bisa diputar di halaman dan menampilkan ukuran file serta durasinya. Bisa diunduh sebagai file `recording-<resolusi>p-<timestamp>.webm`.
 - **Halaman Tentang** — halaman kedua (`about.html`) menjelaskan setiap pengaturan, tombol, dan indikator di layar.
+- **Toggle bahasa** — beralih seluruh tampilan antara Bahasa Indonesia dan Inggris; pilihannya diingat di kedua halaman.
 - **Sentuhan aksesibilitas** — perubahan status diumumkan lewat `aria-live`, outline fokus terlihat jelas, dan animasi titik merah berkedip dimatikan otomatis kalau `prefers-reduced-motion` aktif.
 
 ## Cara menjalankan

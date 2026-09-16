@@ -11,148 +11,256 @@
 <div class="topbar">
   <h1>
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
-    Screen Recorder Lokal
+    <span data-i18n="appTitle">Screen Recorder Lokal</span>
   </h1>
   <a class="nav-link" href="index.html">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-    Kembali
+    <span data-i18n="navBack">Kembali</span>
   </a>
+  <div class="langtoggle" id="langtoggle" role="group" aria-label="Bahasa">
+    <button type="button" data-lang="id" aria-pressed="true">ID</button>
+    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+  </div>
 </div>
-<p class="subtitle">Penjelasan singkat fitur dan tampilan di aplikasi ini.</p>
+<p class="subtitle" data-i18n="subtitle">Penjelasan singkat fitur dan tampilan di aplikasi ini.</p>
 
 <section class="about-section">
-  <h2>Pengaturan</h2>
+  <h2 data-i18n="secSettings">Pengaturan</h2>
   <div class="feature-list">
     <div class="feature-item">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
       <div>
-        <strong>Resolusi</strong>
-        <p>Pilih kualitas gambar rekaman: 1080p (paling tajam), 720p (seimbang), atau 480p (paling ringan).</p>
+        <strong data-i18n="resTitle">Resolusi</strong>
+        <p data-i18n="resDesc">Pilih kualitas gambar rekaman: 1080p (paling tajam), 720p (seimbang), atau 480p (paling ringan).</p>
       </div>
     </div>
     <div class="feature-item">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg>
       <div>
-        <strong>Kompresi</strong>
-        <p>Mengatur ukuran file hasil rekaman. Semakin tinggi kompresi, file semakin kecil tapi kualitas gambar sedikit menurun.</p>
+        <strong data-i18n="compTitle">Kompresi</strong>
+        <p data-i18n="compDesc">Mengatur ukuran file hasil rekaman. Semakin tinggi kompresi, file semakin kecil tapi kualitas gambar sedikit menurun.</p>
       </div>
     </div>
     <div class="feature-item">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M19 5a15 15 0 0 1 0 14M15.5 8.5a7 7 0 0 1 0 7"/></svg>
       <div>
-        <strong>Audio sistem/tab</strong>
-        <p>Ikut merekam suara yang keluar dari layar atau tab yang dibagikan, misalnya suara video atau musik.</p>
+        <strong data-i18n="sysAudioTitle">Audio sistem/tab</strong>
+        <p data-i18n="sysAudioDesc">Ikut merekam suara yang keluar dari layar atau tab yang dibagikan, misalnya suara video atau musik.</p>
       </div>
     </div>
     <div class="feature-item">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10v1a7 7 0 0 0 14 0v-1M12 18v4M8 22h8"/></svg>
       <div>
-        <strong>Mikrofon</strong>
-        <p>Ikut merekam suara Anda lewat mikrofon. Akan muncul izin tambahan saat diaktifkan. Jika izin ditolak, rekaman tetap jalan tanpa suara mikrofon.</p>
+        <strong data-i18n="micTitle">Mikrofon</strong>
+        <p data-i18n="micDesc">Ikut merekam suara Anda lewat mikrofon. Akan muncul izin tambahan saat diaktifkan. Jika izin ditolak, rekaman tetap jalan tanpa suara mikrofon.</p>
       </div>
     </div>
   </div>
 </section>
 
 <section class="about-section">
-  <h2>Tombol kontrol</h2>
+  <h2 data-i18n="secControls">Tombol kontrol</h2>
   <div class="feature-list">
     <div class="feature-item">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="8"/></svg>
       <div>
-        <strong>Mulai Rekam</strong>
-        <p>Memilih layar/window/tab yang mau direkam. Ada hitung mundur 3-2-1 sebelum rekaman benar-benar mulai, supaya sempat bersiap.</p>
+        <strong data-i18n="startTitle">Mulai Rekam</strong>
+        <p data-i18n="startDesc">Memilih layar/window/tab yang mau direkam. Ada hitung mundur 3-2-1 sebelum rekaman benar-benar mulai, supaya sempat bersiap.</p>
       </div>
     </div>
     <div class="feature-item">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg>
       <div>
-        <strong>Jeda / Lanjutkan</strong>
-        <p>Menghentikan sementara rekaman tanpa memotongnya jadi file terpisah, lalu bisa dilanjutkan kapan saja.</p>
+        <strong data-i18n="pauseTitle">Jeda / Lanjutkan</strong>
+        <p data-i18n="pauseDesc">Menghentikan sementara rekaman tanpa memotongnya jadi file terpisah, lalu bisa dilanjutkan kapan saja.</p>
       </div>
     </div>
     <div class="feature-item">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="6" width="12" height="12"/></svg>
       <div>
-        <strong>Stop</strong>
-        <p>Mengakhiri rekaman dan menyiapkan hasilnya untuk diputar atau diunduh.</p>
+        <strong data-i18n="stopTitle">Stop</strong>
+        <p data-i18n="stopDesc">Mengakhiri rekaman dan menyiapkan hasilnya untuk diputar atau diunduh.</p>
       </div>
     </div>
   </div>
 </section>
 
 <section class="about-section">
-  <h2>Tampilan saat merekam</h2>
+  <h2 data-i18n="secDisplay">Tampilan saat merekam</h2>
   <div class="feature-list">
     <div class="feature-item">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg>
       <div>
-        <strong>Titik merah berkedip &amp; status</strong>
-        <p>Menunjukkan rekaman sedang berjalan atau sedang dijeda.</p>
+        <strong data-i18n="dotTitle">Titik merah berkedip &amp; status</strong>
+        <p data-i18n="dotDesc">Menunjukkan rekaman sedang berjalan atau sedang dijeda.</p>
       </div>
     </div>
     <div class="feature-item">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
       <div>
-        <strong>Timer durasi</strong>
-        <p>Menampilkan lama rekaman berjalan dalam format menit:detik.</p>
+        <strong data-i18n="timerTitle">Timer durasi</strong>
+        <p data-i18n="timerDesc">Menampilkan lama rekaman berjalan dalam format menit:detik.</p>
       </div>
     </div>
     <div class="feature-item">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10v1a7 7 0 0 0 14 0v-1"/></svg>
       <div>
-        <strong>Mic aktif</strong>
-        <p>Muncul saat mikrofon berhasil diaktifkan, sebagai tanda suara Anda ikut terekam.</p>
+        <strong data-i18n="micIndTitle">Mic aktif</strong>
+        <p data-i18n="micIndDesc">Muncul saat mikrofon berhasil diaktifkan, sebagai tanda suara Anda ikut terekam.</p>
       </div>
     </div>
     <div class="feature-item">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
       <div>
-        <strong>Preview langsung</strong>
-        <p>Menampilkan pratinjau layar yang sedang direkam, untuk memastikan sumber yang dibagikan sudah benar.</p>
+        <strong data-i18n="previewTitle">Preview langsung</strong>
+        <p data-i18n="previewDesc">Menampilkan pratinjau layar yang sedang direkam, untuk memastikan sumber yang dibagikan sudah benar.</p>
       </div>
     </div>
   </div>
 </section>
 
 <section class="about-section">
-  <h2>Setelah rekaman selesai</h2>
+  <h2 data-i18n="secAfter">Setelah rekaman selesai</h2>
   <div class="feature-list">
     <div class="feature-item">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M10 8l5 4-5 4V8Z"/></svg>
       <div>
-        <strong>Pemutar hasil rekaman</strong>
-        <p>Hasil rekaman bisa langsung diputar di halaman ini untuk dicek sebelum diunduh.</p>
+        <strong data-i18n="playerTitle">Pemutar hasil rekaman</strong>
+        <p data-i18n="playerDesc">Hasil rekaman bisa langsung diputar di halaman ini untuk dicek sebelum diunduh.</p>
       </div>
     </div>
     <div class="feature-item">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/></svg>
       <div>
-        <strong>Tombol Download</strong>
-        <p>Menyimpan hasil rekaman sebagai file video ke perangkat Anda.</p>
+        <strong data-i18n="downloadTitle">Tombol Download</strong>
+        <p data-i18n="downloadDesc">Menyimpan hasil rekaman sebagai file video ke perangkat Anda.</p>
       </div>
     </div>
     <div class="feature-item">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4v6h6M20 20v-6h-6"/><path d="M20 10a8 8 0 0 0-14.5-4.5M4 14a8 8 0 0 0 14.5 4.5"/></svg>
       <div>
-        <strong>Ukuran file &amp; durasi</strong>
-        <p>Ringkasan ukuran file dan lama rekaman, untuk cek cepat apakah pengaturan kompresi sudah sesuai kebutuhan.</p>
+        <strong data-i18n="sizeTitle">Ukuran file &amp; durasi</strong>
+        <p data-i18n="sizeDesc">Ringkasan ukuran file dan lama rekaman, untuk cek cepat apakah pengaturan kompresi sudah sesuai kebutuhan.</p>
       </div>
     </div>
   </div>
 </section>
 
 <section class="about-section">
-  <h2>Privasi</h2>
+  <h2 data-i18n="secPrivacy">Privasi</h2>
   <div class="feature-list">
     <div class="feature-item">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2a4 4 0 0 0-4 4v6a4 4 0 0 0 8 0V6a4 4 0 0 0-4-4Z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1M12 18v4M8 22h8"/></svg>
       <div>
-        <strong>100% lokal</strong>
-        <p>Semua proses rekam terjadi langsung di komputer Anda. Tidak ada rekaman yang dikirim atau diunggah ke internet.</p>
+        <strong data-i18n="localTitle">100% lokal</strong>
+        <p data-i18n="localDesc">Semua proses rekam terjadi langsung di komputer Anda. Tidak ada rekaman yang dikirim atau diunggah ke internet.</p>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+const I18N = {
+  id: {
+    appTitle: 'Screen Recorder Lokal',
+    navBack: 'Kembali',
+    subtitle: 'Penjelasan singkat fitur dan tampilan di aplikasi ini.',
+    secSettings: 'Pengaturan',
+    resTitle: 'Resolusi',
+    resDesc: 'Pilih kualitas gambar rekaman: 1080p (paling tajam), 720p (seimbang), atau 480p (paling ringan).',
+    compTitle: 'Kompresi',
+    compDesc: 'Mengatur ukuran file hasil rekaman. Semakin tinggi kompresi, file semakin kecil tapi kualitas gambar sedikit menurun.',
+    sysAudioTitle: 'Audio sistem/tab',
+    sysAudioDesc: 'Ikut merekam suara yang keluar dari layar atau tab yang dibagikan, misalnya suara video atau musik.',
+    micTitle: 'Mikrofon',
+    micDesc: 'Ikut merekam suara Anda lewat mikrofon. Akan muncul izin tambahan saat diaktifkan. Jika izin ditolak, rekaman tetap jalan tanpa suara mikrofon.',
+    secControls: 'Tombol kontrol',
+    startTitle: 'Mulai Rekam',
+    startDesc: 'Memilih layar/window/tab yang mau direkam. Ada hitung mundur 3-2-1 sebelum rekaman benar-benar mulai, supaya sempat bersiap.',
+    pauseTitle: 'Jeda / Lanjutkan',
+    pauseDesc: 'Menghentikan sementara rekaman tanpa memotongnya jadi file terpisah, lalu bisa dilanjutkan kapan saja.',
+    stopTitle: 'Stop',
+    stopDesc: 'Mengakhiri rekaman dan menyiapkan hasilnya untuk diputar atau diunduh.',
+    secDisplay: 'Tampilan saat merekam',
+    dotTitle: 'Titik merah berkedip & status',
+    dotDesc: 'Menunjukkan rekaman sedang berjalan atau sedang dijeda.',
+    timerTitle: 'Timer durasi',
+    timerDesc: 'Menampilkan lama rekaman berjalan dalam format menit:detik.',
+    micIndTitle: 'Mic aktif',
+    micIndDesc: 'Muncul saat mikrofon berhasil diaktifkan, sebagai tanda suara Anda ikut terekam.',
+    previewTitle: 'Preview langsung',
+    previewDesc: 'Menampilkan pratinjau layar yang sedang direkam, untuk memastikan sumber yang dibagikan sudah benar.',
+    secAfter: 'Setelah rekaman selesai',
+    playerTitle: 'Pemutar hasil rekaman',
+    playerDesc: 'Hasil rekaman bisa langsung diputar di halaman ini untuk dicek sebelum diunduh.',
+    downloadTitle: 'Tombol Download',
+    downloadDesc: 'Menyimpan hasil rekaman sebagai file video ke perangkat Anda.',
+    sizeTitle: 'Ukuran file & durasi',
+    sizeDesc: 'Ringkasan ukuran file dan lama rekaman, untuk cek cepat apakah pengaturan kompresi sudah sesuai kebutuhan.',
+    secPrivacy: 'Privasi',
+    localTitle: '100% lokal',
+    localDesc: 'Semua proses rekam terjadi langsung di komputer Anda. Tidak ada rekaman yang dikirim atau diunggah ke internet.',
+  },
+  en: {
+    appTitle: 'Screen Recorder Lokal',
+    navBack: 'Back',
+    subtitle: "A quick explanation of this app's features and on-screen elements.",
+    secSettings: 'Settings',
+    resTitle: 'Resolution',
+    resDesc: 'Choose the recording quality: 1080p (sharpest), 720p (balanced), or 480p (lightest).',
+    compTitle: 'Compression',
+    compDesc: 'Controls the file size of the recording. Higher compression means a smaller file but slightly lower image quality.',
+    sysAudioTitle: 'System/tab audio',
+    sysAudioDesc: 'Also records the sound coming from the shared screen or tab, e.g. video or music.',
+    micTitle: 'Microphone',
+    micDesc: "Also records your voice through the microphone. An extra permission prompt appears when enabled. If denied, recording continues without microphone audio.",
+    secControls: 'Control buttons',
+    startTitle: 'Start Recording',
+    startDesc: 'Pick the screen/window/tab to record. A 3-2-1 countdown runs before recording actually starts, so you have time to get ready.',
+    pauseTitle: 'Pause / Resume',
+    pauseDesc: 'Temporarily stops the recording without splitting it into a separate file, then can be resumed anytime.',
+    stopTitle: 'Stop',
+    stopDesc: 'Ends the recording and prepares the result for playback or download.',
+    secDisplay: 'Display while recording',
+    dotTitle: 'Pulsing red dot & status',
+    dotDesc: 'Shows whether the recording is currently running or paused.',
+    timerTitle: 'Duration timer',
+    timerDesc: 'Shows how long the recording has been running, in minutes:seconds format.',
+    micIndTitle: 'Mic active',
+    micIndDesc: 'Appears once the microphone is successfully enabled, indicating your voice is also being recorded.',
+    previewTitle: 'Live preview',
+    previewDesc: 'Shows a preview of the screen being recorded, so you can confirm the right source is shared.',
+    secAfter: 'After recording finishes',
+    playerTitle: 'Recording player',
+    playerDesc: 'The recording can be played back right on this page to check it before downloading.',
+    downloadTitle: 'Download button',
+    downloadDesc: 'Saves the recording as a video file to your device.',
+    sizeTitle: 'File size & duration',
+    sizeDesc: 'A summary of file size and recording length, for a quick check that the compression setting fits your needs.',
+    secPrivacy: 'Privacy',
+    localTitle: '100% local',
+    localDesc: 'All recording happens directly on your computer. Nothing is ever sent or uploaded to the internet.',
+  },
+};
+let lang = localStorage.getItem('screenRecorderLang') === 'en' ? 'en' : 'id';
+const t = key => I18N[lang][key];
+
+function applyStaticI18n() {
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
+  document.getElementById('langtoggle').querySelectorAll('button').forEach(b =>
+    b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+}
+
+document.getElementById('langtoggle').addEventListener('click', e => {
+  const b = e.target.closest('button[data-lang]');
+  if (!b || b.dataset.lang === lang) return;
+  lang = b.dataset.lang;
+  localStorage.setItem('screenRecorderLang', lang);
+  applyStaticI18n();
+});
+
+applyStaticI18n();
+</script>
 </body>
 </html>

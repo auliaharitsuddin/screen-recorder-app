@@ -11,25 +11,29 @@
 <div class="topbar">
   <h1>
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
-    Screen Recorder Lokal
+    <span data-i18n="appTitle">Screen Recorder Lokal</span>
   </h1>
   <a class="nav-link" href="about.html">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
-    Tentang
+    <span data-i18n="navAbout">Tentang</span>
   </a>
+  <div class="langtoggle" id="langtoggle" role="group" aria-label="Bahasa">
+    <button type="button" data-lang="id" aria-pressed="true">ID</button>
+    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+  </div>
 </div>
-<p class="subtitle">Rekam layar langsung dari browser, tanpa upload ke server manapun.</p>
+<p class="subtitle" data-i18n="subtitle">Rekam layar langsung dari browser, tanpa upload ke server manapun.</p>
 
 <div class="banner" role="note">
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 9v4M12 17h.01M10.29 3.86l-8.18 14.18A2 2 0 0 0 3.82 21h16.36a2 2 0 0 0 1.71-2.96L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
-  <span>Saat dialog "Bagikan layar" muncul, <strong>jangan pilih tab ini</strong> — memilih tab recorder sendiri akan merekam layarnya sendiri berulang (efek cermin). Jika mikrofon diaktifkan, akan muncul dialog izin terpisah.</span>
+  <span id="bannerText" data-i18n-html="banner">Saat dialog "Bagikan layar" muncul, <strong>jangan pilih tab ini</strong> — memilih tab recorder sendiri akan merekam layarnya sendiri berulang (efek cermin). Jika mikrofon diaktifkan, akan muncul dialog izin terpisah.</span>
 </div>
 
 <fieldset id="settings">
-  <legend>Pengaturan</legend>
+  <legend data-i18n="settingsLegend">Pengaturan</legend>
 
   <div class="field">
-    <label for="resolution">Resolusi</label>
+    <label for="resolution" data-i18n="resolutionLabel">Resolusi</label>
     <select id="resolution">
       <option value="1080">1080p &mdash; 1920x1080</option>
       <option value="720" selected>720p &mdash; 1280x720</option>
@@ -38,29 +42,29 @@
   </div>
 
   <div class="field">
-    <label for="compression">Kompresi (bitrate)</label>
+    <label for="compression" data-i18n="compressionLabel">Kompresi (bitrate)</label>
     <select id="compression">
-      <option value="1">Rendah &mdash; kualitas terbaik, file besar</option>
-      <option value="0.6" selected>Sedang &mdash; seimbang</option>
-      <option value="0.3">Tinggi &mdash; kualitas turun, file kecil</option>
+      <option value="1" data-i18n="optLow">Rendah &mdash; kualitas terbaik, file besar</option>
+      <option value="0.6" selected data-i18n="optMed">Sedang &mdash; seimbang</option>
+      <option value="0.3" data-i18n="optHigh">Tinggi &mdash; kualitas turun, file kecil</option>
     </select>
   </div>
 
   <div class="field">
-    <label class="check-label"><input type="checkbox" id="systemAudio" checked> Audio sistem/tab (jika tersedia)</label>
-    <p class="hint">Suara dari layar/tab yang dibagikan, mis. video atau musik.</p>
+    <label class="check-label"><input type="checkbox" id="systemAudio" checked> <span data-i18n="systemAudioLabel">Audio sistem/tab (jika tersedia)</span></label>
+    <p class="hint" data-i18n="systemAudioHint">Suara dari layar/tab yang dibagikan, mis. video atau musik.</p>
   </div>
 
   <div class="field">
-    <label class="check-label"><input type="checkbox" id="micAudio" checked> Mikrofon (suara Anda)</label>
-    <p class="hint">Butuh izin mikrofon terpisah dari izin share layar.</p>
+    <label class="check-label"><input type="checkbox" id="micAudio" checked> <span data-i18n="micAudioLabel">Mikrofon (suara Anda)</span></label>
+    <p class="hint" data-i18n="micAudioHint">Butuh izin mikrofon terpisah dari izin share layar.</p>
   </div>
 </fieldset>
 
 <div class="controls">
   <button id="startBtn">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="8"/></svg>
-    Mulai Rekam
+    <span data-i18n="startBtnLabel">Mulai Rekam</span>
   </button>
   <button id="pauseBtn" disabled>
     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg>
@@ -68,7 +72,7 @@
   </button>
   <button id="stopBtn" disabled>
     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="6" width="12" height="12"/></svg>
-    Stop
+    <span data-i18n="stopBtnLabel">Stop</span>
   </button>
 </div>
 
@@ -78,18 +82,18 @@
   <span class="rec-dot" id="recDot" hidden aria-hidden="true"></span>
   <span id="statusText" role="status" aria-live="polite"></span>
   <span id="timer" aria-hidden="true"></span>
-  <span id="micIndicator" hidden><span class="mic-dot" aria-hidden="true"></span> Mic aktif</span>
+  <span id="micIndicator" hidden><span class="mic-dot" aria-hidden="true"></span> <span data-i18n="micIndicatorLabel">Mic aktif</span></span>
 </div>
 
 <video id="preview" autoplay muted></video>
 
 <div id="result" style="display:none">
-  <h2>Hasil rekaman</h2>
+  <h2 data-i18n="resultTitle">Hasil rekaman</h2>
   <video id="playback" controls></video>
   <div id="size"></div>
   <a id="downloadLink" class="download" download>
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/></svg>
-    Download .webm
+    <span data-i18n="downloadLabel">Download .webm</span>
   </a>
 </div>
 
@@ -113,6 +117,84 @@ const compressionSel = document.getElementById('compression');
 const systemAudioChk = document.getElementById('systemAudio');
 const micAudioChk = document.getElementById('micAudio');
 const pauseLabel = document.getElementById('pauseLabel');
+
+const I18N = {
+  id: {
+    appTitle: 'Screen Recorder Lokal',
+    navAbout: 'Tentang',
+    subtitle: 'Rekam layar langsung dari browser, tanpa upload ke server manapun.',
+    banner: 'Saat dialog "Bagikan layar" muncul, <strong>jangan pilih tab ini</strong> — memilih tab recorder sendiri akan merekam layarnya sendiri berulang (efek cermin). Jika mikrofon diaktifkan, akan muncul dialog izin terpisah.',
+    settingsLegend: 'Pengaturan',
+    resolutionLabel: 'Resolusi',
+    compressionLabel: 'Kompresi (bitrate)',
+    optLow: 'Rendah — kualitas terbaik, file besar',
+    optMed: 'Sedang — seimbang',
+    optHigh: 'Tinggi — kualitas turun, file kecil',
+    systemAudioLabel: 'Audio sistem/tab (jika tersedia)',
+    systemAudioHint: 'Suara dari layar/tab yang dibagikan, mis. video atau musik.',
+    micAudioLabel: 'Mikrofon (suara Anda)',
+    micAudioHint: 'Butuh izin mikrofon terpisah dari izin share layar.',
+    startBtnLabel: 'Mulai Rekam',
+    stopBtnLabel: 'Stop',
+    micIndicatorLabel: 'Mic aktif',
+    resultTitle: 'Hasil rekaman',
+    downloadLabel: 'Download .webm',
+    pause: 'Jeda',
+    resume: 'Lanjutkan',
+    recording: 'Merekam',
+    paused: 'Dijeda',
+    cancelPrefix: 'Dibatalkan atau gagal akses layar: ',
+    micWarning: ' (mikrofon gagal diakses, lanjut tanpa suara mic)',
+    sizeLine: (mb, dur) => `Ukuran file: ${mb} MB · Durasi: ${dur}`,
+  },
+  en: {
+    appTitle: 'Screen Recorder Lokal',
+    navAbout: 'About',
+    subtitle: 'Record your screen directly from the browser, without uploading to any server.',
+    banner: 'When the "Share screen" dialog appears, <strong>don\'t pick this tab</strong> — sharing the recorder\'s own tab records its own screen over and over (mirror effect). If the microphone is enabled, a separate permission dialog will appear.',
+    settingsLegend: 'Settings',
+    resolutionLabel: 'Resolution',
+    compressionLabel: 'Compression (bitrate)',
+    optLow: 'Low — best quality, large file',
+    optMed: 'Medium — balanced',
+    optHigh: 'High — lower quality, small file',
+    systemAudioLabel: 'System/tab audio (if available)',
+    systemAudioHint: 'Sound from the shared screen/tab, e.g. video or music.',
+    micAudioLabel: 'Microphone (your voice)',
+    micAudioHint: 'Needs a separate microphone permission from the screen-share permission.',
+    startBtnLabel: 'Start Recording',
+    stopBtnLabel: 'Stop',
+    micIndicatorLabel: 'Mic active',
+    resultTitle: 'Recording result',
+    downloadLabel: 'Download .webm',
+    pause: 'Pause',
+    resume: 'Resume',
+    recording: 'Recording',
+    paused: 'Paused',
+    cancelPrefix: 'Cancelled or failed to access screen: ',
+    micWarning: ' (microphone access failed, continuing without mic audio)',
+    sizeLine: (mb, dur) => `File size: ${mb} MB · Duration: ${dur}`,
+  },
+};
+let lang = localStorage.getItem('screenRecorderLang') === 'en' ? 'en' : 'id';
+const t = key => I18N[lang][key];
+
+function applyStaticI18n() {
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => { el.innerHTML = t(el.dataset.i18nHtml); });
+  document.getElementById('langtoggle').querySelectorAll('button').forEach(b =>
+    b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+  pauseLabel.textContent = mediaRecorder && mediaRecorder.state === 'paused' ? t('resume') : t('pause');
+}
+
+document.getElementById('langtoggle').addEventListener('click', e => {
+  const b = e.target.closest('button[data-lang]');
+  if (!b || b.dataset.lang === lang) return;
+  lang = b.dataset.lang;
+  localStorage.setItem('screenRecorderLang', lang);
+  applyStaticI18n();
+});
 
 const RES = {
   '1080': { width: 1920, height: 1080, baseBitrate: 8_000_000 },
@@ -139,7 +221,7 @@ function formatTime(sec) {
 // tidak spam screen reader dengan pengumuman ulang setiap tick timer.
 function setStatus(recording, paused) {
   recDot.hidden = !recording;
-  statusText.textContent = recording ? (paused ? 'Dijeda' : 'Merekam') : '';
+  statusText.textContent = recording ? (paused ? t('paused') : t('recording')) : '';
   updateTimerDisplay();
 }
 
@@ -221,14 +303,14 @@ startBtn.onclick = async () => {
   try {
     screenStream = await requestScreenStream(systemAudioChk.checked);
   } catch (err) {
-    statusText.textContent = 'Dibatalkan atau gagal akses layar: ' + err.message;
+    statusText.textContent = t('cancelPrefix') + err.message;
     return;
   }
 
   let micWarning = '';
   if (micAudioChk.checked) {
     micStream = await requestMicStream();
-    if (!micStream) micWarning = ' (mikrofon gagal diakses, lanjut tanpa suara mic)';
+    if (!micStream) micWarning = t('micWarning');
   } else {
     micStream = null;
   }
@@ -263,7 +345,7 @@ startBtn.onclick = async () => {
     downloadLink.href = lastDownloadUrl;
     const stamp = new Date().toISOString().replace(/[:.]/g, '-');
     downloadLink.download = `recording-${resolutionSel.value}p-${stamp}.webm`;
-    sizeEl.textContent = `Ukuran file: ${(blob.size / 1024 / 1024).toFixed(2)} MB · Durasi: ${formatTime(elapsedSec)}`;
+    sizeEl.textContent = t('sizeLine')((blob.size / 1024 / 1024).toFixed(2), formatTime(elapsedSec));
     result.style.display = 'block';
 
     stopAllTracksAndCleanup();
@@ -274,7 +356,7 @@ startBtn.onclick = async () => {
     setStatus(false);
     startBtn.disabled = false;
     pauseBtn.disabled = true;
-    pauseLabel.textContent = 'Jeda';
+    pauseLabel.textContent = t('pause');
     stopBtn.disabled = true;
     settingsFieldset.disabled = false;
   };
@@ -287,7 +369,7 @@ startBtn.onclick = async () => {
   mediaRecorder.start();
   elapsedSec = 0;
   setStatus(true, false);
-  statusText.textContent = 'Merekam' + micWarning;
+  statusText.textContent = t('recording') + micWarning;
   timerHandle = setInterval(() => {
     elapsedSec++;
     updateTimerDisplay();
@@ -300,11 +382,11 @@ startBtn.onclick = async () => {
 pauseBtn.onclick = () => {
   if (mediaRecorder.state === 'recording') {
     mediaRecorder.pause();
-    pauseLabel.textContent = 'Lanjutkan';
+    pauseLabel.textContent = t('resume');
     setStatus(true, true);
   } else if (mediaRecorder.state === 'paused') {
     mediaRecorder.resume();
-    pauseLabel.textContent = 'Jeda';
+    pauseLabel.textContent = t('pause');
     setStatus(true, false);
   }
 };
@@ -312,6 +394,8 @@ pauseBtn.onclick = () => {
 stopBtn.onclick = () => {
   if (mediaRecorder && mediaRecorder.state !== 'inactive') mediaRecorder.stop();
 };
+
+applyStaticI18n();
 </script>
 </body>
 </html>
