@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Screen Recorder Lokal</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='9' fill='%23EF4444'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="topbar">
+  <h1>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
+    Screen Recorder Lokal
+  </h1>
+  <a class="nav-link" href="about.html">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+    Tentang
+  </a>
+</div>
+<p class="subtitle">Rekam layar langsung dari browser, tanpa upload ke server manapun.</p>
+
+<div class="banner" role="note">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 9v4M12 17h.01M10.29 3.86l-8.18 14.18A2 2 0 0 0 3.82 21h16.36a2 2 0 0 0 1.71-2.96L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
+  <span>Saat dialog "Bagikan layar" muncul, <strong>jangan pilih tab ini</strong> — memilih tab recorder sendiri akan merekam layarnya sendiri berulang (efek cermin). Jika mikrofon diaktifkan, akan muncul dialog izin terpisah.</span>
+</div>
+
+<fieldset id="settings">
+  <legend>Pengaturan</legend>
+
+  <div class="field">
+    <label for="resolution">Resolusi</label>
+    <select id="resolution">
+      <option value="1080">1080p &mdash; 1920x1080</option>
+      <option value="720" selected>720p &mdash; 1280x720</option>
+      <option value="480">480p &mdash; 854x480</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="compression">Kompresi (bitrate)</label>
+    <select id="compression">
+      <option value="1">Rendah &mdash; kualitas terbaik, file besar</option>
+      <option value="0.6" selected>Sedang &mdash; seimbang</option>
+      <option value="0.3">Tinggi &mdash; kualitas turun, file kecil</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label class="check-label"><input type="checkbox" id="systemAudio" checked> Audio sistem/tab (jika tersedia)</label>
+    <p class="hint">Suara dari layar/tab yang dibagikan, mis. video atau musik.</p>
+  </div>
+
+  <div class="field">
+    <label class="check-label"><input type="checkbox" id="micAudio" checked> Mikrofon (suara Anda)</label>
+    <p class="hint">Butuh izin mikrofon terpisah dari izin share layar.</p>
+  </div>
+</fieldset>
+
+<div class="controls">
+  <button id="startBtn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="8"/></svg>
+    Mulai Rekam
+  </button>
+  <button id="pauseBtn" disabled>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg>
+    <span id="pauseLabel">Jeda</span>
+  </button>
+  <button id="stopBtn" disabled>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="6" width="12" height="12"/></svg>
+    Stop
+  </button>
+</div>
+
+<div id="countdown" aria-live="assertive"></div>
+
+<div id="status" class="status-row">
+  <span class="rec-dot" id="recDot" hidden aria-hidden="true"></span>
+  <span id="statusText" role="status" aria-live="polite"></span>
+  <span id="timer" aria-hidden="true"></span>
+  <span id="micIndicator" hidden><span class="mic-dot" aria-hidden="true"></span> Mic aktif</span>
+</div>
+
+<video id="preview" autoplay muted></video>
+
+<div id="result" style="display:none">
+  <h2>Hasil rekaman</h2>
+  <video id="playback" controls></video>
+  <div id="size"></div>
+  <a id="downloadLink" class="download" download>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/></svg>
+    Download .webm
+  </a>
+</div>
+
+<script>
+const startBtn = document.getElementById('startBtn');
+const pauseBtn = document.getElementById('pauseBtn');
+const stopBtn = document.getElementById('stopBtn');
+const settingsFieldset = document.getElementById('settings');
+const recDot = document.getElementById('recDot');
+const statusText = document.getElementById('statusText');
+const timerEl = document.getElementById('timer');
+const micIndicator = document.getElementById('micIndicator');
+const countdownEl = document.getElementById('countdown');
+const preview = document.getElementById('preview');
+const playback = document.getElementById('playback');
+const result = document.getElementById('result');
+const sizeEl = document.getElementById('size');
+const downloadLink = document.getElementById('downloadLink');
+const resolutionSel = document.getElementById('resolution');
+const compressionSel = document.getElementById('compression');
+const systemAudioChk = document.getElementById('systemAudio');
+const micAudioChk = document.getElementById('micAudio');
+const pauseLabel = document.getElementById('pauseLabel');
+
+const RES = {
+  '1080': { width: 1920, height: 1080, baseBitrate: 8_000_000 },
+  '720':  { width: 1280, height: 720,  baseBitrate: 5_000_000 },
+  '480':  { width: 854,  height: 480,  baseBitrate: 2_500_000 },
+};
+
+let mediaRecorder, chunks = [], negotiatedMimeType;
+let screenStream, micStream, combinedStream, audioCtx;
+let timerHandle, elapsedSec, lastDownloadUrl;
+
+function pickMimeType() {
+  const candidates = ['video/webm;codecs=vp9', 'video/webm;codecs=vp8', 'video/webm'];
+  return candidates.find(t => MediaRecorder.isTypeSupported(t)) || '';
+}
+
+function formatTime(sec) {
+  const m = String(Math.floor(sec / 60)).padStart(2, '0');
+  const s = String(sec % 60).padStart(2, '0');
+  return `${m}:${s}`;
+}
+
+// Hanya panggil ini saat status BERUBAH (bukan tiap detik) supaya aria-live
+// tidak spam screen reader dengan pengumuman ulang setiap tick timer.
+function setStatus(recording, paused) {
+  recDot.hidden = !recording;
+  statusText.textContent = recording ? (paused ? 'Dijeda' : 'Merekam') : '';
+  updateTimerDisplay();
+}
+
+function updateTimerDisplay() {
+  timerEl.textContent = elapsedSec === undefined ? '' : formatTime(elapsedSec);
+}
+
+async function requestScreenStream(withAudio) {
+  const res = RES[resolutionSel.value];
+  try {
+    return await navigator.mediaDevices.getDisplayMedia({
+      video: { width: { ideal: res.width }, height: { ideal: res.height } },
+      audio: withAudio,
+    });
+  } catch (err) {
+    if (withAudio && err.name !== 'NotAllowedError') {
+      // Beberapa browser/OS menolak audio:true untuk share layar penuh — coba lagi tanpa audio.
+      return requestScreenStream(false);
+    }
+    throw err;
+  }
+}
+
+async function requestMicStream() {
+  try {
+    return await navigator.mediaDevices.getUserMedia({
+      audio: { echoCancellation: true, noiseSuppression: true },
+    });
+  } catch (err) {
+    return null; // Izin ditolak / tidak ada mic — lanjut rekam tanpa suara mic.
+  }
+}
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+async function runCountdown() {
+  countdownEl.style.display = 'flex';
+  for (const n of [3, 2, 1]) {
+    countdownEl.textContent = n;
+    await sleep(700);
+  }
+  countdownEl.style.display = 'none';
+}
+
+// Menggabungkan track video layar + audio sistem + audio mic jadi satu MediaStream
+// lewat Web Audio API, karena MediaRecorder hanya menerima satu stream.
+function buildCombinedStream() {
+  const tracks = [...screenStream.getVideoTracks()];
+  const systemAudioTracks = screenStream.getAudioTracks();
+  const micTracks = micStream ? micStream.getAudioTracks() : [];
+
+  if (systemAudioTracks.length && micTracks.length) {
+    audioCtx = new AudioContext();
+    if (audioCtx.state === 'suspended') audioCtx.resume(); // browser autoplay policy safeguard
+    const dest = audioCtx.createMediaStreamDestination();
+    audioCtx.createMediaStreamSource(new MediaStream(systemAudioTracks)).connect(dest);
+    audioCtx.createMediaStreamSource(new MediaStream(micTracks)).connect(dest);
+    tracks.push(...dest.stream.getAudioTracks());
+  } else if (systemAudioTracks.length) {
+    tracks.push(...systemAudioTracks);
+  } else if (micTracks.length) {
+    tracks.push(...micTracks);
+  }
+
+  return new MediaStream(tracks);
+}
+
+function stopAllTracksAndCleanup() {
+  screenStream?.getTracks().forEach(t => t.stop());
+  micStream?.getTracks().forEach(t => t.stop());
+  if (audioCtx) { audioCtx.close(); audioCtx = null; }
+}
+
+startBtn.onclick = async () => {
+  const res = RES[resolutionSel.value];
+  const compressionFactor = parseFloat(compressionSel.value);
+  const videoBitsPerSecond = Math.round(res.baseBitrate * compressionFactor);
+
+  try {
+    screenStream = await requestScreenStream(systemAudioChk.checked);
+  } catch (err) {
+    statusText.textContent = 'Dibatalkan atau gagal akses layar: ' + err.message;
+    return;
+  }
+
+  let micWarning = '';
+  if (micAudioChk.checked) {
+    micStream = await requestMicStream();
+    if (!micStream) micWarning = ' (mikrofon gagal diakses, lanjut tanpa suara mic)';
+  } else {
+    micStream = null;
+  }
+
+  combinedStream = buildCombinedStream();
+  micIndicator.hidden = !(micStream && micStream.getAudioTracks().length);
+
+  preview.srcObject = screenStream;
+  preview.setAttribute('data-active', '');
+
+  settingsFieldset.disabled = true;
+  startBtn.disabled = true;
+  await runCountdown();
+
+  chunks = [];
+  negotiatedMimeType = pickMimeType();
+
+  mediaRecorder = new MediaRecorder(combinedStream, {
+    mimeType: negotiatedMimeType,
+    videoBitsPerSecond,
+  });
+
+  mediaRecorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data); };
+
+  mediaRecorder.onstop = () => {
+    clearInterval(timerHandle);
+    if (lastDownloadUrl) URL.revokeObjectURL(lastDownloadUrl);
+
+    const blob = new Blob(chunks, { type: negotiatedMimeType || 'video/webm' });
+    lastDownloadUrl = URL.createObjectURL(blob);
+    playback.src = lastDownloadUrl;
+    downloadLink.href = lastDownloadUrl;
+    const stamp = new Date().toISOString().replace(/[:.]/g, '-');
+    downloadLink.download = `recording-${resolutionSel.value}p-${stamp}.webm`;
+    sizeEl.textContent = `Ukuran file: ${(blob.size / 1024 / 1024).toFixed(2)} MB · Durasi: ${formatTime(elapsedSec)}`;
+    result.style.display = 'block';
+
+    stopAllTracksAndCleanup();
+    preview.srcObject = null;
+    preview.removeAttribute('data-active');
+    micIndicator.hidden = true;
+    elapsedSec = undefined;
+    setStatus(false);
+    startBtn.disabled = false;
+    pauseBtn.disabled = true;
+    pauseLabel.textContent = 'Jeda';
+    stopBtn.disabled = true;
+    settingsFieldset.disabled = false;
+  };
+
+  // Berhenti otomatis jika user stop dari kontrol share browser, bukan dari tombol Stop.
+  screenStream.getVideoTracks()[0].onended = () => {
+    if (mediaRecorder.state !== 'inactive') mediaRecorder.stop();
+  };
+
+  mediaRecorder.start();
+  elapsedSec = 0;
+  setStatus(true, false);
+  statusText.textContent = 'Merekam' + micWarning;
+  timerHandle = setInterval(() => {
+    elapsedSec++;
+    updateTimerDisplay();
+  }, 1000);
+
+  pauseBtn.disabled = false;
+  stopBtn.disabled = false;
+};
+
+pauseBtn.onclick = () => {
+  if (mediaRecorder.state === 'recording') {
+    mediaRecorder.pause();
+    pauseLabel.textContent = 'Lanjutkan';
+    setStatus(true, true);
+  } else if (mediaRecorder.state === 'paused') {
+    mediaRecorder.resume();
+    pauseLabel.textContent = 'Jeda';
+    setStatus(true, false);
+  }
+};
+
+stopBtn.onclick = () => {
+  if (mediaRecorder && mediaRecorder.state !== 'inactive') mediaRecorder.stop();
+};
+</script>
+</body>
+</html>
